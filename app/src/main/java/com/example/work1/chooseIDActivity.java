@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -46,6 +48,22 @@ public class chooseIDActivity extends AppCompatActivity {
         recyclerView_chooseID.setLayoutManager(new LinearLayoutManager(context));
         recyclerView_chooseID.setAdapter(new recyclerAdapter());
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ViewHolder>{
@@ -57,26 +75,20 @@ public class chooseIDActivity extends AppCompatActivity {
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
-                textView_ID_recycler = (TextView)itemView.findViewById(R.id.textView_ID_recycler);
-                textView_status_recycler = (TextView)itemView.findViewById(R.id.textView_status_recycler);
-                btn_choose_recycler =(Button)itemView.findViewById(R.id.btn_choose_recycler);
+                textView_ID_recycler = itemView.findViewById(R.id.textView_ID_recycler);
+                textView_status_recycler = itemView.findViewById(R.id.textView_status_recycler);
+                btn_choose_recycler = itemView.findViewById(R.id.btn_choose_recycler);
             }
         }@NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder((View)LayoutInflater.from(parent.getContext())
+            return new ViewHolder(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.recycler_main,parent,false));
         }
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.textView_ID_recycler.setText(
-                    holder.textView_ID_recycler.getText().toString() +
-                            sample.get(position).get("id")
-            );
-            holder.textView_status_recycler.setText(
-                    holder.textView_status_recycler.getText().toString() +
-                            sample.get(position).get("status")
-            );
+            holder.textView_ID_recycler.setText(sample.get(position).get("id"));
+            holder.textView_status_recycler.setText(sample.get(position).get("status"));
             holder.btn_choose_recycler.setOnClickListener(view -> {
                 setResult(Activity.RESULT_OK,new Intent().putExtra("id",sample.get(position).get("id")));
                 finish();
@@ -87,4 +99,6 @@ public class chooseIDActivity extends AppCompatActivity {
             return sample.size();
         }
     }
+
+
 }

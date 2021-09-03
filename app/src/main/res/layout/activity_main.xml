@@ -49,11 +49,14 @@
                     android:id="@+id/editText_id_main"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:digits="@string/digit"
                     android:imeOptions="actionNext"
                     android:inputType="text"
+                    android:nextFocusDown="@id/editText_id_main"
                     android:nextFocusForward="@id/editText_destinationID_main"
                     android:paddingTop="0dp"
-                    android:paddingBottom="0dp" />
+                    android:paddingBottom="0dp"
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,12 +100,14 @@
                     android:id="@+id/editText_destinationID_main"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:digits="@string/digit"
                     android:imeOptions="actionNext"
                     android:inputType="text"
-                    android:maxLines="1"
+                    android:nextFocusDown="@id/editText_destinationID_main"
                     android:nextFocusForward="@id/editText_storageID_main"
                     android:paddingTop="0dp"
-                    android:paddingBottom="0dp" />
+                    android:paddingBottom="0dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -202,11 +207,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="5dp"
+                    android:digits="@string/digit"
                     android:imeOptions="actionNext"
                     android:inputType="text"
+                    android:nextFocusDown="@id/editText_storageID_main"
                     android:nextFocusForward="@id/editText_boxID_main"
                     android:paddingTop="0dp"
-                    android:paddingBottom="0dp" />
+                    android:paddingBottom="0dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -248,11 +256,14 @@
                     android:id="@+id/editText_boxID_main"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:digits="@string/digit"
                     android:imeOptions="actionNext"
                     android:inputType="text"
+                    android:nextFocusDown="@id/editText_boxID_main"
                     android:nextFocusForward="@id/editText_labelID_main"
                     android:paddingTop="0dp"
-                    android:paddingBottom="0dp" />
+                    android:paddingBottom="0dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -282,11 +293,15 @@
                     android:id="@+id/editText_labelID_main"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:digits="@string/digit"
                     android:imeOptions="actionNext"
                     android:inputType="text"
+                    android:minLines="1"
+                    android:nextFocusDown="@id/editText_labelID_main"
                     android:nextFocusForward="@id/editText_num_main"
                     android:paddingTop="0dp"
-                    android:paddingBottom="0dp" />
+                    android:paddingBottom="0dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -318,7 +333,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:imeOptions="actionNext"
-                    android:inputType="numberSigned"
+                    android:inputType="number"
+                    android:nextFocusDown="@id/editText_num_main"
                     android:nextFocusForward="@id/btn_tmpSave_main"
                     android:paddingTop="0dp"
                     android:paddingBottom="0dp" />

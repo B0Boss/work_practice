@@ -14,8 +14,23 @@
         <!-- Customize your theme here. -->
         <item name="android:buttonStyle">@style/button</item>
     </style>
-    <style name="button" parent="android:Widget.Button">
+
+    <style name="TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">#FFFFDF</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="button" parent="Widget.AppCompat.Button">
 <!--        <item name="android:backgroundTint">@color/purple_200</item>-->
         <item name="android:textColor">@color/button_font_color</item>
     </style>
+
+    <style name="editTextBGStyle" parent="Widget.AppCompat.EditText">
+        <item name="boxBackgroundColor">#FFFFDF</item>
+    </style>
+
 </resources>

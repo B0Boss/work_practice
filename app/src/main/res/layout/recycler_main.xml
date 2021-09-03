@@ -1,58 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btn_choose_recycler"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_weight="1"
+        android:backgroundTint="#CCCCCC"
+        android:paddingLeft="4dp"
+        android:paddingTop="0dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="0dp"
+        android:text="選擇"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_weight="1"
+        android:text="單號 :"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <TextView
+        android:id="@+id/textView_ID_recycler"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="4"
+        android:text="1"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView_ID_recycler"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:text="單號: "
-                android:textSize="16sp" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:text="單據/已處理/待處理: "
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-            <Button
-                android:id="@+id/btn_choose_recycler"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#CCCCCC"
-                android:paddingLeft="4dp"
-                android:paddingTop="0dp"
-                android:paddingRight="4dp"
-                android:paddingBottom="0dp"
-                android:text="選擇"
-                android:textColor="#000000" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/textView_status_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:text="1"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <TextView
-            android:id="@+id/textView_status_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="單據/已處理/待處理: "
-            android:textSize="16sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/dot_line"
+        android:layerType="software"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:background="@drawable/dot_line"
-            android:layerType="software" />
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

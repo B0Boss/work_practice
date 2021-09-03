@@ -9,11 +9,11 @@
         android:id="@+id/textView_labelID_recyclerTmpSaveList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:text="標籤ID :"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="1"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/btn_delete_recyclerTmpSaveList"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -21,39 +21,10 @@
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:text="X"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_change_recyclerTmpSaveList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="35dp"
-        android:text="修改"
-        app:layout_constraintStart_toEndOf="@+id/textInputLayout"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView_labelID_recyclerTmpSaveList">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText_quantity_recyclerTmpSaveList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:inputType="numberSigned"
-            android:paddingTop="0dp"
-            android:paddingBottom="0dp" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <View
         android:layout_width="match_parent"
@@ -62,16 +33,37 @@
         android:background="@drawable/dot_line"
         android:layerType="software"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="5dp"
         android:text="數量 :"
         app:layout_constraintStart_toEndOf="@+id/btn_delete_recyclerTmpSaveList"
+        app:layout_constraintTop_toBottomOf="@+id/textView_labelID_recyclerTmpSaveList" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:text="標籤ID :"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/btn_delete_recyclerTmpSaveList"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_quantity_recyclerTmpSaveList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="1"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView_labelID_recyclerTmpSaveList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

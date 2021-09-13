@@ -36,6 +36,65 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        dataList = new ArrayList<>();
+        initialUI();
+        boundUIListener();
+        ImeOptions();
+        editTextWatcher();
+
+    }
+
+    private void boundUIListener() {
+        btn_idSearch_main.setOnClickListener(this::btn_search_onclick);
+        btn_tmpSave_main.setOnClickListener(this::btn_tmpSave_onclick);
+        btn_tmpSaveList_main.setOnClickListener(this::btn_tmpSaveList_onclick);
+
+    }
+
+    private void btn_tmpSaveList_onclick(View view) {
+        ActivityResultLauncher<Intent> tmpSave = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(), result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        dataList = CachePot.getInstance().pop(ArrayList.class);
+                    }
+                });
+
+            CachePot.getInstance().push(dataList);
+            tmpSave.launch(new Intent(this, tmpSaveListActivity.class));
+
+
+    }
+
+    private void btn_tmpSave_onclick(View view) {
+        String label = editText_labelID_main.getText().toString(),
+                num = editText_num_main.getText().toString();
+        editText_labelID_main.setText("");
+        editText_num_main.setText("");
+        editText_labelID_main.requestFocus();
+
+        for (TmpItem item:dataList) {
+            if (label.equals(item.editText_labelID)) {
+                Toast.makeText(this, "此標籤已輸入", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        dataList.add( new TmpItem(label,num) );
+        Toast.makeText(this, "暫存成功!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void btn_search_onclick(View view) {
+        ActivityResultLauncher<Intent> getWorkID = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(), result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        editText_id_main.setText(result.getData().getStringExtra("id"));
+                        editText_destinationID_main.requestFocus();
+                    }
+                });
+        getWorkID.launch(new Intent(this,chooseIDActivity.class));
+    }
+
+    private void initialUI() {
         btn_idSearch_main = findViewById(R.id.btn_idSearch_main);
         btn_pickedUp_main = findViewById(R.id.btn_pickedUp_main);
         btn_pickupSequence_main = findViewById(R.id.btn_pickupSequence_main);
@@ -49,14 +108,6 @@ public class MainActivity extends AppCompatActivity {
         editText_boxID_main = findViewById(R.id.editText_boxID_main);
         editText_labelID_main = findViewById(R.id.editText_labelID_main);
         editText_num_main = findViewById(R.id.editText_num_main);
-
-        dataList = new ArrayList<>();
-        ImeOptions();
-        editTextWatcher();
-        buttonSearchWorkID();
-        buttonTmpSave();
-        buttonTmpList();
-
     }
 
 
@@ -83,10 +134,10 @@ public class MainActivity extends AppCompatActivity {
                     editText_num_main.requestFocus();
                     break;
                 case R.id.editText_num_main:
-                    btn_tmpSave_main.requestFocus();
+                    btn_tmpSave_main.performClick();
                     break;
             }
-            return false;
+            return true;
         };
         
         editText_id_main.setOnEditorActionListener(FocusEditorAction);
@@ -101,11 +152,12 @@ public class MainActivity extends AppCompatActivity {
         TextWatcher watcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                btn_pickedUp_main.setEnabled(false);
-                btn_pickupSequence_main.setEnabled(false);
-                btn_tmpSaveList_main.setEnabled(false);
-                btn_tmpSave_main.setEnabled(false);
-                btn_pickupConfirm_main.setEnabled(false);
+                editText_id_main.setEnabled(false);
+                editText_destinationID_main.setEnabled(false);
+                editText_storageID_main.setEnabled(false);
+                editText_boxID_main.setEnabled(false);
+                editText_labelID_main.setEnabled(false);
+                editText_num_main.setEnabled(false);
             }@Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -137,51 +189,10 @@ public class MainActivity extends AppCompatActivity {
         editText_num_main.addTextChangedListener(watcher);
     }
 
-    private void buttonSearchWorkID() {
-        ActivityResultLauncher<Intent> getWorkID = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK){
-                    editText_id_main.setText(result.getData().getStringExtra("id"));
-                    editText_destinationID_main.requestFocus();
-                }
-            });
-        btn_idSearch_main.setOnClickListener(view -> getWorkID.launch(new Intent(this,chooseIDActivity.class)));
-    }
 
-    private void buttonTmpSave() {
-        btn_tmpSave_main.setOnClickListener(view -> {
-
-            for (TmpItem item:dataList) {
-                if (editText_labelID_main.getText().toString().equals(item.editText_labelID)) {
-                    Toast.makeText(this, "此標籤已輸入", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            }
-
-            dataList.add(new TmpItem(editText_labelID_main.getText()+"",
-                    editText_num_main.getText()+"")
-                );Toast.makeText(this, "暫存成功!", Toast.LENGTH_SHORT).show();
-            editText_labelID_main.setText("");
-            editText_num_main.setText("");
-            editText_labelID_main.requestFocus();
-        });
-
-    }
-
-    private void buttonTmpList() {
-
-        ActivityResultLauncher<Intent> tmpSave = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK){
-                    dataList = CachePot.getInstance().pop(ArrayList.class);
-                }
-            });
-
-        btn_tmpSaveList_main.setOnClickListener(view -> {
-            CachePot.getInstance().push(dataList);
-            tmpSave.launch(new Intent(this, tmpSaveListActivity.class));
-
-        });
-    }
+}
+class Tool{
+    private Tool() {}
+    public static Tool instance = new Tool();
 
 }
